@@ -9,8 +9,8 @@ URL:           https://github.com/my-mail-ru/%{name}
 Source0:       https://github.com/my-mail-ru/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildRoot:     %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
-BuildRequires: swift
-BuildRequires: swift-packaging
+BuildRequires: swift >= 3.0.2
+BuildRequires: swift-packaging >= 0.6
 BuildRequires: libiprotocluster-devel
 
 %swift_find_provides_and_requires
@@ -44,6 +44,21 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{swift_libdir}/*.so
+
+
+%package devel
+Summary:  Common parts of clients of various Octopus modules
+Requires: %{name} = %{version}-%{release}
+Requires: libiprotocluster-devel
+
+%description devel
+This package provides common functionality which can be useful when communicating with any module of the Octopus.
+
+%{?__revision:Built from revision %{__revision}.}
+
+
+%files devel
+%defattr(-,root,root,-)
 %{swift_moduledir}/*.swiftmodule
 %{swift_moduledir}/*.swiftdoc
 %{swift_clangmoduleroot}/COctopus
