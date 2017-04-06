@@ -1,5 +1,0 @@
-module COctopus [system] {
-	header "errcode.h"
-	link "iprotocluster"
-	export *
-}

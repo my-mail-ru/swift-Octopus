@@ -11,7 +11,7 @@ BuildRoot:     %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires: swift >= 3.0.2
 BuildRequires: swift-packaging >= 0.6
-BuildRequires: libiprotocluster-devel
+BuildRequires: swiftpm(https://github.com/my-mail-ru/swift-CIProto.git) >= 0.2.0
 
 %swift_find_provides_and_requires
 
@@ -32,7 +32,6 @@ This package provides common functionality which can be useful when communicatin
 
 %install
 rm -rf %{buildroot}
-rm -f .build/release/libCOctopus.so
 %swift_install
 %swift_install_devel
 
@@ -61,4 +60,3 @@ This package provides common functionality which can be useful when communicatin
 %defattr(-,root,root,-)
 %{swift_moduledir}/*.swiftmodule
 %{swift_moduledir}/*.swiftdoc
-%{swift_clangmoduleroot}/COctopus
